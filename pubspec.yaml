@@ -1,5 +1,5 @@
 name: scankit
-description: "A modern, lean barcode and QR code scanner for Flutter. Native iOS (VisionKit) and Android (ML Kit + CameraX) implementations."
+description: "QR code, barcode & document scanner for Flutter. Native iOS (VisionKit) and Android (ML Kit + CameraX) implementations."
 version: 0.1.0
 homepage: https://vipinkashyap.github.io/scankit
 repository: https://github.com/vipinkashyap/scankit

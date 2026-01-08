@@ -1,13 +1,13 @@
 # ScanKit
 
-A modern, lean barcode and QR code scanner for Flutter. Native implementations only - iOS uses VisionKit/Vision, Android uses ML Kit + CameraX.
+A modern Flutter plugin for **QR codes**, **barcodes**, and **document scanning**. Native implementations only - iOS uses VisionKit/Vision, Android uses ML Kit + CameraX.
 
 ## Features
 
-- **Native Performance**: Uses platform-native APIs for fast, accurate scanning
-- **Multiple Scanning Modes**: One-shot, embedded widget, image/gallery scanning
-- **Document Scanning**: Multi-page document capture with edge detection
-- **Rich Configuration**: Format filtering, scan regions, debounce, auto-zoom
+- **QR & Barcode Scanning**: 13 formats including QR, EAN, UPC, Code 128, Data Matrix, and more
+- **Document Scanning**: Multi-page capture with automatic edge detection
+- **Multiple Modes**: One-shot, embedded widget, or scan from gallery/images
+- **Native Performance**: Platform-native APIs for fast, accurate results
 - **Camera Controls**: Torch, zoom, front/back camera switching
 - **Customizable Overlays**: Built-in animated overlays or bring your own
 

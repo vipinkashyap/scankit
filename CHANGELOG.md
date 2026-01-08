@@ -1,19 +1,18 @@
 ## 0.1.0
 
-Initial release.
+Initial release - QR code, barcode & document scanner for Flutter.
 
 ### Features
 
-- **One-shot scanning**: Full-screen scanner with `ScanKit.scan()`
-- **Embedded scanner**: `ScanKitView` widget for embedding in any layout
-- **Gallery scanning**: `ScanKit.scanFromGallery()` and `ScanKit.scanFromFile()`
-- **Document scanning**: Multi-page document capture with `ScanKit.scanDocument()`
-- **Camera controls**: Torch, zoom, front/back camera switching
-- **Customizable overlays**: `ScanKitOverlay` and `ScanKitAnimatedOverlay`
-- **Rich configuration**: Format filtering, scan regions, debounce, auto-zoom
-- **Validation callbacks**: Filter unwanted barcodes before emission
+- **QR & Barcode Scanning**: 13 formats including QR, EAN, UPC, Code 128, Data Matrix
+- **Document Scanning**: Multi-page capture with automatic edge detection
+- **Multiple Modes**: One-shot (`ScanKit.scan()`), embedded widget (`ScanKitView`), gallery/image scanning
+- **Camera Controls**: Torch, zoom, front/back camera switching
+- **Customizable Overlays**: `ScanKitOverlay` and `ScanKitAnimatedOverlay`
+- **Rich Configuration**: Format filtering, scan regions, debounce, auto-zoom
+- **Validation Callbacks**: Filter unwanted results before emission
 
-### Supported Formats
+### Supported Barcode Formats
 
 - 2D: QR, Aztec, Data Matrix, PDF417
 - 1D Product: EAN-8, EAN-13, UPC-A, UPC-E
