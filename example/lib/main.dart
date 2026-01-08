@@ -78,6 +78,12 @@ class HomePage extends StatelessWidget {
             onTap: () => _navigate(context, const StyledOverlayExample()),
           ),
           ExampleCard(
+            title: 'Liquid Glass',
+            subtitle: 'Premium iOS-inspired UI',
+            icon: Icons.blur_on,
+            onTap: () => _navigate(context, const LiquidGlassExample()),
+          ),
+          ExampleCard(
             title: 'Continuous Scanning',
             subtitle: 'Scan multiple items',
             icon: Icons.repeat,

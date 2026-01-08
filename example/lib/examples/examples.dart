@@ -10,3 +10,4 @@ export 'continuous_scan_example.dart';
 export 'custom_ui_example.dart';
 export 'gallery_scan_example.dart';
 export 'document_scan_example.dart';
+export 'liquid_glass_example.dart';
