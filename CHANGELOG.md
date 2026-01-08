@@ -1,3 +1,8 @@
+## 0.1.1
+
+- Updated package description to highlight QR code, barcode & document scanning capabilities
+- Improved documentation and README
+
 ## 0.1.0
 
 Initial release - QR code, barcode & document scanner for Flutter.
