@@ -1,0 +1,15 @@
+# Development files
+CLAUDE.md
+.claude/
+
+# GitHub Pages (needed for website, not for package)
+docs/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Build artifacts
+build/
+.dart_tool/
