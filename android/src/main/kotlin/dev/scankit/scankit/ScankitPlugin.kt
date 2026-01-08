@@ -147,6 +147,12 @@ class ScankitPlugin : FlutterPlugin, ActivityAware, ScannerHostApi {
     override fun isSupported(): Boolean = true
 
     override fun isTorchAvailable(): Boolean {
+        // If embedded scanner is active, use its camera info
+        activeEmbeddedScanner?.let { scanner ->
+            return scanner.isTorchAvailable()
+        }
+
+        // Otherwise check device capability
         val ctx = context ?: return false
         val cameraManager = ctx.getSystemService(Context.CAMERA_SERVICE) as? CameraManager
             ?: return false
@@ -165,11 +171,26 @@ class ScankitPlugin : FlutterPlugin, ActivityAware, ScannerHostApi {
     // MARK: - Torch Control
 
     override fun setTorch(enabled: Boolean) {
-        torchEnabled = enabled
-        flutterApi?.onTorchStateChanged(enabled) { }
+        // Forward to embedded scanner if active
+        val scanner = activeEmbeddedScanner
+        if (scanner != null) {
+            val success = scanner.setTorch(enabled)
+            if (success) {
+                torchEnabled = enabled
+            }
+        } else {
+            // No active scanner, just track state
+            torchEnabled = enabled
+            flutterApi?.onTorchStateChanged(enabled) { }
+        }
     }
 
     override fun getTorchState(): Boolean = torchEnabled
+
+    fun notifyTorchStateChanged(enabled: Boolean) {
+        torchEnabled = enabled
+        flutterApi?.onTorchStateChanged(enabled) { }
+    }
 
     // MARK: - Full-Screen Barcode Scanning
 

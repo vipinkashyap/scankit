@@ -175,6 +175,18 @@ class EmbeddedScannerView(
         plugin.notifyZoomChanged(clampedZoom.toDouble())
     }
 
+    fun setTorch(enabled: Boolean): Boolean {
+        val camera = camera ?: return false
+        if (!camera.cameraInfo.hasFlashUnit()) return false
+        camera.cameraControl.enableTorch(enabled)
+        plugin.notifyTorchStateChanged(enabled)
+        return true
+    }
+
+    fun isTorchAvailable(): Boolean {
+        return camera?.cameraInfo?.hasFlashUnit() == true
+    }
+
     private fun startCamera() {
         // Check camera permission first
         val permissionStatus = ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA)

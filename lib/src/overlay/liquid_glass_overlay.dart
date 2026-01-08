@@ -53,17 +53,17 @@ import 'package:flutter/services.dart';
 class LiquidGlassOverlay extends StatefulWidget {
   const LiquidGlassOverlay({
     super.key,
-    this.accentColor = Colors.white,
+    this.accentColor = const Color(0xCCFFFFFF), // Subtle white (80% opacity)
     this.scanAreaSize = 0.7,
-    this.blurStrength = 10.0,
-    this.overlayOpacity = 0.6,
-    this.cornerLength = 40.0,
-    this.cornerRadius = 16.0,
-    this.borderWidth = 3.0,
-    this.showScanLine = true,
-    this.showPulse = true,
-    this.scanLineDuration = const Duration(seconds: 2),
-    this.pulseDuration = const Duration(milliseconds: 1500),
+    this.blurStrength = 8.0,
+    this.overlayOpacity = 0.5,
+    this.cornerLength = 35.0,
+    this.cornerRadius = 12.0,
+    this.borderWidth = 2.5,
+    this.showScanLine = false, // Disabled by default for cleaner look
+    this.showPulse = false, // Disabled by default for subtlety
+    this.scanLineDuration = const Duration(seconds: 3),
+    this.pulseDuration = const Duration(milliseconds: 2000),
     this.showCloseButton = false,
     this.showTorchButton = false,
     this.torchEnabled = false,
@@ -481,14 +481,15 @@ class _LiquidGlassPainter extends CustomPainter {
   }
 
   void _drawPulseGlow(Canvas canvas, RRect scanRect) {
-    final glowOpacity = 0.3 * pulseValue;
-    final glowWidth = borderWidth + (4 * pulseValue);
+    // Subtle pulse - reduced opacity and smaller expansion
+    final glowOpacity = 0.15 * pulseValue;
+    final glowWidth = borderWidth + (2 * pulseValue);
 
     final glowPaint = Paint()
       ..color = accentColor.withValues(alpha: glowOpacity)
       ..style = PaintingStyle.stroke
       ..strokeWidth = glowWidth
-      ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 8);
+      ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 4);
 
     canvas.drawRRect(scanRect, glowPaint);
   }
@@ -552,23 +553,23 @@ class _LiquidGlassPainter extends CustomPainter {
 
   void _drawScanLine(Canvas canvas, RRect scanRect) {
     final rect = scanRect.outerRect;
-    final padding = rect.height * 0.08;
+    final padding = rect.height * 0.1;
     final availableHeight = rect.height - (padding * 2);
     final lineY = rect.top + padding + (availableHeight * scanLinePosition!);
 
-    final horizontalPadding = rect.width * 0.08;
+    final horizontalPadding = rect.width * 0.1;
     final lineLeft = rect.left + horizontalPadding;
     final lineRight = rect.right - horizontalPadding;
 
-    // Gradient glow above the line
-    final gradientHeight = 40.0;
+    // Subtle gradient glow above the line
+    final gradientHeight = 25.0;
     final gradientPaint = Paint()
       ..shader = LinearGradient(
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,
         colors: [
           accentColor.withValues(alpha: 0.0),
-          accentColor.withValues(alpha: 0.15),
+          accentColor.withValues(alpha: 0.08),
         ],
       ).createShader(
         Rect.fromLTRB(lineLeft, lineY - gradientHeight, lineRight, lineY),
@@ -584,12 +585,12 @@ class _LiquidGlassPainter extends CustomPainter {
       gradientPaint,
     );
 
-    // Main scan line with glow
+    // Main scan line with subtle glow
     final glowPaint = Paint()
-      ..color = accentColor.withValues(alpha: 0.5)
-      ..strokeWidth = 6
+      ..color = accentColor.withValues(alpha: 0.3)
+      ..strokeWidth = 4
       ..strokeCap = StrokeCap.round
-      ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 4);
+      ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 3);
 
     canvas.drawLine(
       Offset(lineLeft, lineY),
