@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:scankit/scankit.dart';
 
-import '../widgets/result_card.dart';
+import '../result_card.dart';
 
 /// Example: Styled overlay
 ///

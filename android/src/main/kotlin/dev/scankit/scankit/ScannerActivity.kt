@@ -46,6 +46,7 @@ class ScannerActivity : AppCompatActivity() {
     private var vibrateOnScan = true
     private var beepOnScan = false
     private var showTorchButton = true
+    private var showNativeOverlay = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +55,7 @@ class ScannerActivity : AppCompatActivity() {
         vibrateOnScan = intent.getBooleanExtra(EXTRA_VIBRATE, true)
         beepOnScan = intent.getBooleanExtra(EXTRA_BEEP, false)
         showTorchButton = intent.getBooleanExtra(EXTRA_SHOW_TORCH, true)
+        showNativeOverlay = intent.getBooleanExtra(EXTRA_SHOW_OVERLAY, true)
 
         setupUI()
         cameraExecutor = Executors.newSingleThreadExecutor()
@@ -110,15 +112,17 @@ class ScannerActivity : AppCompatActivity() {
             addContentView(flashButton, flashButton!!.layoutParams)
         }
 
-        // Add scan overlay
-        val overlayView = ScanOverlayView(this)
-        addContentView(
-            overlayView,
-            android.view.ViewGroup.LayoutParams(
-                android.view.ViewGroup.LayoutParams.MATCH_PARENT,
-                android.view.ViewGroup.LayoutParams.MATCH_PARENT
+        // Add scan overlay (optional - can be disabled for Flutter-based overlays)
+        if (showNativeOverlay) {
+            val overlayView = ScanOverlayView(this)
+            addContentView(
+                overlayView,
+                android.view.ViewGroup.LayoutParams(
+                    android.view.ViewGroup.LayoutParams.MATCH_PARENT,
+                    android.view.ViewGroup.LayoutParams.MATCH_PARENT
+                )
             )
-        )
+        }
     }
 
     private fun toggleTorch() {
@@ -326,6 +330,7 @@ class ScannerActivity : AppCompatActivity() {
         const val EXTRA_VIBRATE = "vibrate"
         const val EXTRA_BEEP = "beep"
         const val EXTRA_SHOW_TORCH = "showTorch"
+        const val EXTRA_SHOW_OVERLAY = "showOverlay"
 
         const val RESULT_VALUE = "value"
         const val RESULT_FORMAT = "format"

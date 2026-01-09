@@ -20,6 +20,7 @@ import 'scankit_controller.dart';
 // Re-export overlays for convenience
 export 'overlay/scan_overlay.dart';
 export 'overlay/animated_overlay.dart';
+export 'overlay/liquid_glass_overlay.dart';
 
 const String _viewType = 'dev.scankit/scanner';
 

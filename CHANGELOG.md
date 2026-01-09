@@ -1,3 +1,11 @@
+## 0.1.2
+
+- Fixed Android torch control in embedded scanner
+- Added `LiquidGlassOverlay` with frosted glass effect
+- Upgraded example app with production-grade architecture (Riverpod, GoRouter, Drift/sqlite3)
+- Added domain-specific examples: WiFi Connect, Event Check-in, Inventory scanning
+- Improved scan result display with category detection and context-aware actions
+
 ## 0.1.1
 
 - Updated package description to highlight QR code, barcode & document scanning capabilities
