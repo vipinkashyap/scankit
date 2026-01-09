@@ -1,27 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:scankit/scankit.dart';
 
-import '../widgets/result_card.dart';
+import '../result_card.dart';
 
-/// Example: Product barcode scan
+/// Example: Simple one-shot scan
 ///
-/// Scans product barcodes: EAN-8, EAN-13, UPC-A, UPC-E.
-class ProductBarcodeExample extends StatefulWidget {
-  const ProductBarcodeExample({super.key});
+/// Opens a full-screen scanner and returns the result on first detection.
+class SimpleOneShotExample extends StatefulWidget {
+  const SimpleOneShotExample({super.key});
 
   @override
-  State<ProductBarcodeExample> createState() => _ProductBarcodeExampleState();
+  State<SimpleOneShotExample> createState() => _SimpleOneShotExampleState();
 }
 
-class _ProductBarcodeExampleState extends State<ProductBarcodeExample> {
+class _SimpleOneShotExampleState extends State<SimpleOneShotExample> {
   BarcodeResult? _result;
 
   Future<void> _scan() async {
-    // Product barcodes: EAN-8, EAN-13, UPC-A, UPC-E
-    final result = await ScanKit.scan(
-      formats: BarcodeFormat.product,
-      vibrateOnScan: true,
-    );
+    // Simple! Just call scan() and get the result
+    final result = await ScanKit.scan();
 
     if (result != null && mounted) {
       setState(() => _result = result);
@@ -31,7 +28,7 @@ class _ProductBarcodeExampleState extends State<ProductBarcodeExample> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Product Barcodes')),
+      appBar: AppBar(title: const Text('Simple One-Shot')),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(24),
@@ -44,14 +41,14 @@ class _ProductBarcodeExampleState extends State<ProductBarcodeExample> {
               ],
               FilledButton.icon(
                 onPressed: _scan,
-                icon: const Icon(Icons.shopping_cart),
-                label: const Text('Scan Product'),
+                icon: const Icon(Icons.qr_code_scanner),
+                label: const Text('Scan Barcode'),
               ),
               const SizedBox(height: 16),
-              const Text(
-                'formats: BarcodeFormat.product\n(EAN-8, EAN-13, UPC-A, UPC-E)',
+              Text(
+                'Opens full-screen scanner.\nReturns result on first detection.',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontFamily: 'monospace', fontSize: 12),
+                style: Theme.of(context).textTheme.bodySmall,
               ),
             ],
           ),
