@@ -1,3 +1,7 @@
+## 0.1.3
+
+- Improved Android one-shot scanner button visibility with dark circular backgrounds
+
 ## 0.1.2
 
 - Fixed Android torch control in embedded scanner
