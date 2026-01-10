@@ -82,10 +82,13 @@ class ScannerActivity : AppCompatActivity() {
         val topMargin = (resources.displayMetrics.density * 48).toInt()
         val sideMargin = (resources.displayMetrics.density * 16).toInt()
 
+        val padding = (resources.displayMetrics.density * 12).toInt()
+
         // Add close button overlay
         val closeButton = ImageButton(this).apply {
             setImageResource(R.drawable.ic_close)
-            setBackgroundColor(android.graphics.Color.TRANSPARENT)
+            setBackgroundResource(R.drawable.button_circle_bg)
+            setPadding(padding, padding, padding, padding)
             layoutParams = FrameLayout.LayoutParams(buttonSize, buttonSize).apply {
                 this.topMargin = topMargin
                 marginStart = sideMargin
@@ -100,7 +103,8 @@ class ScannerActivity : AppCompatActivity() {
         if (showTorchButton && packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) {
             flashButton = ImageButton(this).apply {
                 setImageResource(R.drawable.ic_flash_off)
-                setBackgroundColor(android.graphics.Color.TRANSPARENT)
+                setBackgroundResource(R.drawable.button_circle_bg)
+                setPadding(padding, padding, padding, padding)
                 contentDescription = "Toggle flash"
                 layoutParams = FrameLayout.LayoutParams(buttonSize, buttonSize).apply {
                     this.topMargin = topMargin
